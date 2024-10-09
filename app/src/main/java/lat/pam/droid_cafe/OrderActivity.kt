@@ -2,7 +2,9 @@ package lat.pam.droid_cafe
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,9 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 class OrderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_order)
 
+        var spinner = findViewById<Spinner>(R.id.spinner)
+        val city = resources.getStringArray(R.array.City)
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, city)
+        spinner.adapter = adapter
     }
     fun onRadioButtonClicked(view: View) {
         // Is the button now checked?
@@ -33,6 +39,8 @@ class OrderActivity : AppCompatActivity() {
             else -> {}
         }
     }
+
+
 
 
     private fun displayToast(message: String) {
